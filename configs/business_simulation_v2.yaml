@@ -1,0 +1,33 @@
+simulation_version: phase4_v2
+value_units: simulated_inr_units
+
+costs:
+  NO_CONTACT: 0.0
+  DIGITAL_REMINDER: 5.0
+  PAYMENT_PLAN_REVIEW: 50.0
+  HUMAN_ESCALATION: 150.0
+
+experience_penalties:
+  unnecessary_digital_contact: 5.0
+  unnecessary_payment_plan_review: 25.0
+  unnecessary_human_escalation: 100.0
+
+action_base_effects:
+  DIGITAL_REMINDER: 0.10
+  PAYMENT_PLAN_REVIEW: 0.16
+  HUMAN_ESCALATION: 0.22
+
+missed_opportunity:
+  no_contact_recoverable_exposure_rate: 0.015
+
+exposure:
+  max_fraction_of_limit: 1.0
+  max_exposure_inr: 250000.0
+
+policy_thresholds:
+  no_contact_upper: 0.20
+  digital_reminder_upper: 0.45
+  payment_plan_review_upper: 0.70
+
+policy_penalties:
+  excess_human_escalation: 250.0

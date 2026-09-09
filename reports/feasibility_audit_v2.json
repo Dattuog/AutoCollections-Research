@@ -1,0 +1,584 @@
+{
+  "PAYMENT_PLAN_ORACLE_DOMINATED": true,
+  "accepted_phase4_v2_hashes": {
+    "comparison": "597cc0dc98774d5b8fa79795c8b195abd8143ab0973c1a95b7b9bc38423cc7b9",
+    "config": "73ead1396946f06fb7bc8679a2b59254ba577cc7f5678f3940be1d92d9d069d5",
+    "sensitivity": "9de2d5a46b3870dec10250ee7dca1277624eb11f14833f31b06aecf812d0dea4",
+    "simulator": "f9e609fdbb73ec26889882e44c5bccd1d19083d76d2cf82188414d5eaf02f5a0"
+  },
+  "artifact_version": 1,
+  "audit": "phase4_7_feasibility_and_capacity",
+  "base_policy_results": {
+    "always_digital_reminder": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 150.42840127125518,
+      "customer_experience_penalty_total": 17525.0,
+      "digital_contact_rate": 1.0,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 676927.8057206483,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 716952.8057206483,
+      "treatment_cost_total": 22500.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "always_human_escalation": {
+      "FEASIBLE": false,
+      "KEEP_ELIGIBLE": false,
+      "PRIMARY_SCORE_ELIGIBLE": false,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 712.701219972486,
+      "customer_experience_penalty_total": 0.0,
+      "digital_contact_rate": 0.0,
+      "feasibility_violations": [
+        "human_escalation_capacity"
+      ],
+      "human_escalation_rate": 1.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 3207155.489876187,
+      "policy_violation_count": 2925,
+      "policy_violation_penalty_total": 731250.0,
+      "simulated_recovery_benefit_total": 4963905.4898761865,
+      "treatment_cost_total": 675000.0,
+      "unnecessary_escalation_penalty_total": 350500.0
+    },
+    "always_no_contact": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": -77.62514369419566,
+      "customer_experience_penalty_total": 0.0,
+      "digital_contact_rate": 0.0,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 349313.1466238805,
+      "net_business_utility": -349313.1466238805,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 0.0,
+      "treatment_cost_total": 0.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "always_payment_plan_review": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 4500,
+          "rate": 1.0
+        }
+      },
+      "average_utility_per_account": 229.94280507530996,
+      "customer_experience_penalty_total": 87625.0,
+      "digital_contact_rate": 0.0,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 1034742.6228388948,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 1347367.6228388948,
+      "treatment_cost_total": 225000.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "risk_based_four_action": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 949,
+          "rate": 0.21088888888888888
+        },
+        "HUMAN_ESCALATION": {
+          "count": 195,
+          "rate": 0.043333333333333335
+        },
+        "NO_CONTACT": {
+          "count": 2911,
+          "rate": 0.6468888888888888
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 445,
+          "rate": 0.09888888888888889
+        }
+      },
+      "average_utility_per_account": 319.2050121408211,
+      "customer_experience_penalty_total": 8105.0,
+      "digital_contact_rate": 0.21088888888888888,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.043333333333333335,
+      "missed_opportunity_penalty_total": 104882.42472849257,
+      "net_business_utility": 1436422.554633695,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 1609954.9793621874,
+      "treatment_cost_total": 56245.0,
+      "unnecessary_escalation_penalty_total": 4300.0
+    },
+    "top35_human_else_digital": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 2925,
+          "rate": 0.65
+        },
+        "HUMAN_ESCALATION": {
+          "count": 1575,
+          "rate": 0.35
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 805.1444747208843,
+      "customer_experience_penalty_total": 12965.0,
+      "digital_contact_rate": 0.65,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.35,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 3623150.1362439794,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 3978190.1362439794,
+      "treatment_cost_total": 250875.0,
+      "unnecessary_escalation_penalty_total": 91200.0
+    },
+    "top35_human_else_no_contact": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 1575,
+          "rate": 0.35
+        },
+        "NO_CONTACT": {
+          "count": 2925,
+          "rate": 0.65
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 695.2508748729205,
+      "customer_experience_penalty_total": 0.0,
+      "digital_contact_rate": 0.0,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.35,
+      "missed_opportunity_penalty_total": 104917.38849305475,
+      "net_business_utility": 3128628.936928142,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 3560996.325421197,
+      "treatment_cost_total": 236250.0,
+      "unnecessary_escalation_penalty_total": 91200.0
+    },
+    "top35_human_else_payment_plan": {
+      "FEASIBLE": true,
+      "KEEP_ELIGIBLE": true,
+      "PRIMARY_SCORE_ELIGIBLE": true,
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 1575,
+          "rate": 0.35
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 2925,
+          "rate": 0.65
+        }
+      },
+      "average_utility_per_account": 776.4649166199914,
+      "customer_experience_penalty_total": 64825.0,
+      "digital_contact_rate": 0.0,
+      "feasibility_violations": [],
+      "human_escalation_rate": 0.35,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 3494092.124789961,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "simulated_recovery_benefit_total": 4032617.124789961,
+      "treatment_cost_total": 382500.0,
+      "unnecessary_escalation_penalty_total": 91200.0
+    }
+  },
+  "capacity_diagnostic": {
+    "CAPACITY_SATURATION_WARNING": true,
+    "capacity_saturating_beats_risk_count": 7,
+    "feasible_static_beats_risk_count": 0,
+    "most_common_capacity_saturating_winner": "top35_human_else_digital",
+    "most_common_capacity_saturating_winner_count": 7,
+    "scenario_capacity_winners": {
+      "base": "top35_human_else_digital",
+      "missed_opportunity_high": "top35_human_else_digital",
+      "missed_opportunity_low": "top35_human_else_digital",
+      "treatment_effect_high": "top35_human_else_digital",
+      "treatment_effect_low": "top35_human_else_digital",
+      "treatment_friction_high": "top35_human_else_digital",
+      "treatment_friction_low": "top35_human_else_digital"
+    },
+    "scenario_count": 7
+  },
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "disclaimer": "All recovery and utility values are deterministic research simulation outputs, not observed bank outcomes, revenue, savings, or causal treatment effects.",
+  "evaluation_split": "validation",
+  "feasible_policy_ranking": [
+    "top35_human_else_digital",
+    "top35_human_else_payment_plan",
+    "top35_human_else_no_contact",
+    "risk_based_four_action",
+    "always_payment_plan_review",
+    "always_digital_reminder",
+    "always_no_contact"
+  ],
+  "freeze_criteria": {
+    "FREEZE_V2": false,
+    "accepted_integrity_properties_retained": true,
+    "hard_human_capacity_enforced": true,
+    "no_feasible_trivial_or_capacity_dominance": false,
+    "oracle_uses_multiple_actions": true
+  },
+  "hidden_test_evaluated": false,
+  "human_capacity": 0.35,
+  "protected_oracle": {
+    "account_count": 4500,
+    "action_distribution": {
+      "DIGITAL_REMINDER": {
+        "count": 252,
+        "rate": 0.056
+      },
+      "HUMAN_ESCALATION": {
+        "count": 623,
+        "rate": 0.13844444444444445
+      },
+      "NO_CONTACT": {
+        "count": 3625,
+        "rate": 0.8055555555555556
+      },
+      "PAYMENT_PLAN_REVIEW": {
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "average_utility_per_account": 1090.8791570504252,
+    "customer_experience_penalty_total": 0.0,
+    "deployable_policy": false,
+    "digital_contact_rate": 0.056,
+    "human_escalation_rate": 0.13844444444444445,
+    "missed_opportunity_penalty_total": 8.524061101373317,
+    "net_business_utility": 4908956.206726913,
+    "oracle_scope": "per-account unconstrained; capacity violations remain reportable",
+    "policy_violation_count": 0,
+    "policy_violation_penalty_total": 0.0,
+    "simulated_recovery_benefit_total": 5003674.730788015,
+    "treatment_cost_total": 94710.0,
+    "unnecessary_escalation_penalty_total": 0.0,
+    "uses_realized_target": true
+  },
+  "raw_utility_ranking": [
+    "top35_human_else_digital",
+    "top35_human_else_payment_plan",
+    "always_human_escalation",
+    "top35_human_else_no_contact",
+    "risk_based_four_action",
+    "always_payment_plan_review",
+    "always_digital_reminder",
+    "always_no_contact"
+  ],
+  "risk_model": {
+    "id": "logistic_derived",
+    "source_artifact_sha256": "3aef0f6f18ab66a44a2f3bd975e2f634bf38be9a2ca73d4b139881d9481b0b29"
+  },
+  "sensitivity_scenarios": {
+    "base": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 3623150.1362439794,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 4908956.206726913,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "always_human_escalation",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 1436422.554633695
+    },
+    "missed_opportunity_high": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 3623150.1362439794,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 4908952.763085492,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "always_human_escalation",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 1331540.1299052024
+    },
+    "missed_opportunity_low": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 3623150.1362439794,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 4908963.039849035,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "always_human_escalation",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 1506344.1711193565
+    },
+    "treatment_effect_high": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 5612245.204365969,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "always_human_escalation",
+      "oracle_utility": 7411429.784637236,
+      "raw_utility_ranking": [
+        "always_human_escalation",
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 2241400.0443147887
+    },
+    "treatment_effect_low": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 1634055.0681219897,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 2407984.390577729,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 631445.0649526012
+    },
+    "treatment_friction_high": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 3268110.1362439794,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 4815989.214199672,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 1367772.554633695
+    },
+    "treatment_friction_low": {
+      "best_capacity_saturating_policy": "top35_human_else_digital",
+      "best_capacity_saturating_policy_utility": 3800670.1362439794,
+      "feasible_policy_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "highest_feasible_policy": "top35_human_else_digital",
+      "highest_raw_utility_policy": "top35_human_else_digital",
+      "oracle_utility": 4957205.341466978,
+      "raw_utility_ranking": [
+        "top35_human_else_digital",
+        "top35_human_else_payment_plan",
+        "always_human_escalation",
+        "top35_human_else_no_contact",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ],
+      "risk_based_policy_utility": 1470747.554633695
+    }
+  },
+  "simulation_version": "phase4_v2",
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec",
+  "value_units": "simulated_inr_units"
+}

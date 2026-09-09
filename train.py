@@ -1,0 +1,76 @@
+import os
+from pathlib import Path
+from time import perf_counter
+
+import numpy as np
+import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+from autocollections.features.approved_features import approved_feature_matrix
+from prepare import evaluate_candidate, load_research_inputs
+
+SEED = 42
+DIGITAL_REMINDER = 1
+HUMAN_ESCALATION = 3
+HUMAN_CAPACITY = 0.35
+
+
+def main() -> None:
+    started = perf_counter()
+    X_train, y_train, X_validation, validation_ids = load_research_inputs()
+    train_features = approved_feature_matrix(X_train, include_derived=True)
+    validation_features = approved_feature_matrix(X_validation, include_derived=True)
+    model = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+            ("model", LogisticRegression(max_iter=2_000, random_state=SEED)),
+        ]
+    )
+    model.fit(train_features, y_train)
+    probabilities = model.predict_proba(validation_features)[:, 1]
+
+    actions = np.full(len(probabilities), DIGITAL_REMINDER, dtype=int)
+    human_count = int(np.floor(HUMAN_CAPACITY * len(probabilities)))
+    actions[np.argsort(-probabilities, kind="stable")[:human_count]] = HUMAN_ESCALATION
+    candidate = pd.DataFrame(
+        {
+            "sample_id": validation_ids,
+            "predicted_probability": probabilities,
+            "action": actions,
+        }
+    )
+    artifact_dir = Path("artifacts/candidates/latest")
+    artifact_dir.mkdir(parents=True, exist_ok=True)
+    candidate.to_parquet(artifact_dir / "candidate_predictions.parquet", index=False)
+
+    result = evaluate_candidate(
+        candidate,
+        experiment_id=os.environ.get("AUTOCOLLECTIONS_EXPERIMENT_ID", "phase5_b4_dry_run"),
+        runtime_seconds=perf_counter() - started,
+    )
+    print("--- AUTOCOLLECTIONS_RESULT ---")
+    for key in (
+        "experiment_id",
+        "primary_score",
+        "feasible",
+        "beats_strong_baseline",
+        "protected_business_utility",
+        "utility_per_account",
+        "human_escalation_rate",
+        "roc_auc",
+        "pr_auc",
+        "brier_score",
+        "runtime_seconds",
+        "evaluator_version",
+        "evaluator_sha256",
+    ):
+        print(f"{key}: {result[key]}")
+    print("--- END_RESULT ---")
+
+
+if __name__ == "__main__":
+    main()

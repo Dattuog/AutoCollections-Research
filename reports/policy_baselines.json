@@ -1,0 +1,375 @@
+{
+  "artifact_version": 1,
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "disclaimer": "All recovery and utility values are deterministic research simulation outputs, not observed bank outcomes, revenue, savings, or causal treatment effects.",
+  "evaluation_split": "validation",
+  "hidden_test_evaluated": false,
+  "highest_utility_policy_without_violations": "always_payment_plan_review",
+  "phase4_baseline_policy": "risk_based_four_action",
+  "policies": {
+    "always_digital_reminder": {
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 553.6709608212295,
+      "customer_experience_penalty_total": 17525.0,
+      "digital_contact_rate": 1.0,
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 2491519.323695533,
+      "observed_default_rate": 0.22111111111111112,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "predicted_risk_mean": 0.22811659012410695,
+      "simulated_recovery_benefit_total": 2531544.323695533,
+      "treatment_cost_total": 22500.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "always_human_escalation": {
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": 1650.881631136119,
+      "customer_experience_penalty_total": 0.0,
+      "digital_contact_rate": 0.0,
+      "human_escalation_rate": 1.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 7428967.340112535,
+      "observed_default_rate": 0.22111111111111112,
+      "policy_violation_count": 2925,
+      "policy_violation_penalty_total": 731250.0,
+      "predicted_risk_mean": 0.22811659012410695,
+      "simulated_recovery_benefit_total": 9185717.340112537,
+      "treatment_cost_total": 675000.0,
+      "unnecessary_escalation_penalty_total": 350500.0
+    },
+    "always_no_contact": {
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 4500,
+          "rate": 1.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "average_utility_per_account": -148.23489999999998,
+      "customer_experience_penalty_total": 0.0,
+      "digital_contact_rate": 0.0,
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 667057.0499999999,
+      "net_business_utility": -667057.0499999999,
+      "observed_default_rate": 0.22111111111111112,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "predicted_risk_mean": 0.22811659012410695,
+      "simulated_recovery_benefit_total": 0.0,
+      "treatment_cost_total": 0.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "always_payment_plan_review": {
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "HUMAN_ESCALATION": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "NO_CONTACT": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 4500,
+          "rate": 1.0
+        }
+      },
+      "average_utility_per_account": 1310.1306681132514,
+      "customer_experience_penalty_total": 87625.0,
+      "digital_contact_rate": 0.0,
+      "human_escalation_rate": 0.0,
+      "missed_opportunity_penalty_total": 0.0,
+      "net_business_utility": 5895588.006509632,
+      "observed_default_rate": 0.22111111111111112,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "predicted_risk_mean": 0.22811659012410695,
+      "simulated_recovery_benefit_total": 6208213.006509632,
+      "treatment_cost_total": 225000.0,
+      "unnecessary_escalation_penalty_total": 0.0
+    },
+    "risk_based_four_action": {
+      "account_count": 4500,
+      "action_distribution": {
+        "DIGITAL_REMINDER": {
+          "count": 949,
+          "rate": 0.21088888888888888
+        },
+        "HUMAN_ESCALATION": {
+          "count": 195,
+          "rate": 0.043333333333333335
+        },
+        "NO_CONTACT": {
+          "count": 2911,
+          "rate": 0.6468888888888888
+        },
+        "PAYMENT_PLAN_REVIEW": {
+          "count": 445,
+          "rate": 0.09888888888888889
+        }
+      },
+      "average_utility_per_account": 813.9451355891952,
+      "by_predicted_risk_band": {
+        "higher": {
+          "account_count": 445,
+          "action_distribution": {
+            "DIGITAL_REMINDER": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "HUMAN_ESCALATION": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "NO_CONTACT": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "PAYMENT_PLAN_REVIEW": {
+              "count": 445,
+              "rate": 1.0
+            }
+          },
+          "average_utility_per_account": 4523.157255669348,
+          "customer_experience_penalty_total": 4625.0,
+          "digital_contact_rate": 0.0,
+          "human_escalation_rate": 0.0,
+          "missed_opportunity_penalty_total": 0.0,
+          "net_business_utility": 2012804.97877286,
+          "observed_default_rate": 0.5842696629213483,
+          "policy_violation_count": 0,
+          "policy_violation_penalty_total": 0.0,
+          "predicted_risk_mean": 0.573292618038868,
+          "simulated_recovery_benefit_total": 2039679.97877286,
+          "treatment_cost_total": 22250.0,
+          "unnecessary_escalation_penalty_total": 0.0
+        },
+        "highest": {
+          "account_count": 195,
+          "action_distribution": {
+            "DIGITAL_REMINDER": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "HUMAN_ESCALATION": {
+              "count": 195,
+              "rate": 1.0
+            },
+            "NO_CONTACT": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "PAYMENT_PLAN_REVIEW": {
+              "count": 0,
+              "rate": 0.0
+            }
+          },
+          "average_utility_per_account": 7628.191672747322,
+          "customer_experience_penalty_total": 0.0,
+          "digital_contact_rate": 0.0,
+          "human_escalation_rate": 1.0,
+          "missed_opportunity_penalty_total": 0.0,
+          "net_business_utility": 1487497.3761857278,
+          "observed_default_rate": 0.7794871794871795,
+          "policy_violation_count": 0,
+          "policy_violation_penalty_total": 0.0,
+          "predicted_risk_mean": 0.77674663295286,
+          "simulated_recovery_benefit_total": 1521047.3761857278,
+          "treatment_cost_total": 29250.0,
+          "unnecessary_escalation_penalty_total": 4300.0
+        },
+        "low_moderate": {
+          "account_count": 949,
+          "action_distribution": {
+            "DIGITAL_REMINDER": {
+              "count": 949,
+              "rate": 1.0
+            },
+            "HUMAN_ESCALATION": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "NO_CONTACT": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "PAYMENT_PLAN_REVIEW": {
+              "count": 0,
+              "rate": 0.0
+            }
+          },
+          "average_utility_per_account": 420.6272552084191,
+          "customer_experience_penalty_total": 3480.0,
+          "digital_contact_rate": 1.0,
+          "human_escalation_rate": 0.0,
+          "missed_opportunity_penalty_total": 0.0,
+          "net_business_utility": 399175.2651927897,
+          "observed_default_rate": 0.2665964172813488,
+          "policy_violation_count": 0,
+          "policy_violation_penalty_total": 0.0,
+          "predicted_risk_mean": 0.29926677530483886,
+          "simulated_recovery_benefit_total": 407400.2651927897,
+          "treatment_cost_total": 4745.0,
+          "unnecessary_escalation_penalty_total": 0.0
+        },
+        "lowest": {
+          "account_count": 2911,
+          "action_distribution": {
+            "DIGITAL_REMINDER": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "HUMAN_ESCALATION": {
+              "count": 0,
+              "rate": 0.0
+            },
+            "NO_CONTACT": {
+              "count": 2911,
+              "rate": 1.0
+            },
+            "PAYMENT_PLAN_REVIEW": {
+              "count": 0,
+              "rate": 0.0
+            }
+          },
+          "average_utility_per_account": -81.32068361387839,
+          "customer_experience_penalty_total": 0.0,
+          "digital_contact_rate": 0.0,
+          "human_escalation_rate": 0.0,
+          "missed_opportunity_penalty_total": 236724.50999999998,
+          "net_business_utility": -236724.50999999998,
+          "observed_default_rate": 0.11336310546204054,
+          "policy_violation_count": 0,
+          "policy_violation_penalty_total": 0.0,
+          "predicted_risk_mean": 0.1154035305190949,
+          "simulated_recovery_benefit_total": 0.0,
+          "treatment_cost_total": 0.0,
+          "unnecessary_escalation_penalty_total": 0.0
+        }
+      },
+      "customer_experience_penalty_total": 8105.0,
+      "digital_contact_rate": 0.21088888888888888,
+      "human_escalation_rate": 0.043333333333333335,
+      "missed_opportunity_penalty_total": 236724.50999999998,
+      "net_business_utility": 3662753.110151378,
+      "observed_default_rate": 0.22111111111111112,
+      "policy_violation_count": 0,
+      "policy_violation_penalty_total": 0.0,
+      "predicted_risk_mean": 0.22811659012410695,
+      "simulated_recovery_benefit_total": 3968127.6201513777,
+      "treatment_cost_total": 56245.0,
+      "unnecessary_escalation_penalty_total": 4300.0
+    }
+  },
+  "policy_thresholds": {
+    "digital_reminder_upper": 0.45,
+    "no_contact_upper": 0.2,
+    "payment_plan_review_upper": 0.7
+  },
+  "risk_model": {
+    "id": "logistic_derived",
+    "source_artifact": "reports/baselines.json",
+    "source_artifact_sha256": "3aef0f6f18ab66a44a2f3bd975e2f634bf38be9a2ca73d4b139881d9481b0b29"
+  },
+  "simulation_version": "phase4_v1",
+  "simulator_assumptions": {
+    "costs": {
+      "DIGITAL_REMINDER": 5.0,
+      "HUMAN_ESCALATION": 150.0,
+      "NO_CONTACT": 0.0,
+      "PAYMENT_PLAN_REVIEW": 50.0
+    },
+    "experience_penalties": {
+      "unnecessary_digital_contact": 5.0,
+      "unnecessary_human_escalation": 100.0,
+      "unnecessary_payment_plan_review": 25.0
+    },
+    "exposure": {
+      "max_exposure_inr": 250000.0,
+      "max_fraction_of_limit": 1.0
+    },
+    "missed_opportunity": {
+      "no_contact_default_rate": 0.015
+    },
+    "policy_penalties": {
+      "excess_human_escalation": 250.0
+    },
+    "policy_thresholds": {
+      "digital_reminder_upper": 0.45,
+      "no_contact_upper": 0.2,
+      "payment_plan_review_upper": 0.7
+    },
+    "recovery_rate_bounds": {
+      "DIGITAL_REMINDER": [
+        0.02,
+        0.1
+      ],
+      "HUMAN_ESCALATION": [
+        0.08,
+        0.25
+      ],
+      "PAYMENT_PLAN_REVIEW": [
+        0.06,
+        0.2
+      ]
+    },
+    "simulation_version": "phase4_v1",
+    "value_units": "simulated_inr_units"
+  },
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec"
+}

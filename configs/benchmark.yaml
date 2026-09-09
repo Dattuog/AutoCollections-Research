@@ -1,0 +1,20 @@
+seed: 42
+canonical_split_sha256: 6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec
+split:
+  train: 0.70
+  validation: 0.15
+  hidden_test: 0.15
+
+model_constraints:
+  min_validation_roc_auc: 0.70
+  max_brier_score: 0.25
+
+policy_constraints:
+  max_human_escalation_rate: 0.35
+  max_treatment_cost_per_account: 250.0
+  require_full_coverage: true
+
+experiment:
+  wall_clock_seconds: 180
+  max_experiments: 50
+  patience: 12

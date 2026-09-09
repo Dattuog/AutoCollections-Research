@@ -1,0 +1,563 @@
+{
+  "artifact_version": 1,
+  "audit": "phase4_5_simulator_sanity_and_sensitivity",
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "disclaimer": "All recovery and utility values are deterministic research simulation outputs, not observed bank outcomes, revenue, savings, or causal treatment effects.",
+  "dominance_diagnostic": {
+    "base_unconstrained_winner": "always_human_escalation",
+    "base_winner_max_action_rate": 1.0,
+    "most_common_unconstrained_winner": "always_human_escalation",
+    "most_common_winner_count": 13,
+    "scenario_count": 13,
+    "static_beats_risk_scenario_count": 13,
+    "warning_only": true,
+    "warnings": [
+      "always_human_escalation treats nearly the entire population and has the highest unconstrained base-scenario utility.",
+      "A static policy beats risk_based_four_action in 13/13 sensitivity scenarios.",
+      "always_human_escalation is the unconstrained winner in 13/13 scenarios."
+    ]
+  },
+  "evaluation_split": "validation",
+  "hidden_test_evaluated": false,
+  "policy_thresholds_unchanged": {
+    "digital_reminder_upper": 0.45,
+    "no_contact_upper": 0.2,
+    "payment_plan_review_upper": 0.7
+  },
+  "risk_model": {
+    "id": "logistic_derived",
+    "source_artifact": "reports/baselines.json",
+    "source_artifact_sha256": "3aef0f6f18ab66a44a2f3bd975e2f634bf38be9a2ca73d4b139881d9481b0b29"
+  },
+  "sensitivity_scenarios": {
+    "base": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3662753.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "digital_cost_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 15.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2446519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3653263.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "digital_cost_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 2.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2505019.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3665600.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "human_cost_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 300.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 6753967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3633503.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "human_cost_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 75.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7766467.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3677378.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "missed_opportunity_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.03,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -1334114.0999999999,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3426028.6001513773
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "missed_opportunity_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.005,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -222352.35,
+        "always_payment_plan_review": 5895588.006509632,
+        "risk_based_four_action": 3820569.4501513774
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "payment_plan_cost_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 100.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5670588.006509632,
+        "risk_based_four_action": 3640503.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "payment_plan_cost_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 25.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 6008088.006509632,
+        "risk_based_four_action": 3673878.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "payment_plan_penalty_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 75.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5720338.006509632,
+        "risk_based_four_action": 3653503.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "payment_plan_penalty_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 10.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.02,
+            0.1
+          ],
+          "HUMAN_ESCALATION": [
+            0.08,
+            0.25
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.06,
+            0.2
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 2491519.323695533,
+        "always_human_escalation": 7428967.340112535,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 5948163.006509632,
+        "risk_based_four_action": 3665528.110151378
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "recovery_bounds_high": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.03,
+            0.15000000000000002
+          ],
+          "HUMAN_ESCALATION": [
+            0.12,
+            0.375
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.09,
+            0.30000000000000004
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 3757291.4855433,
+        "always_human_escalation": 12021826.010168802,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 8999694.509764448,
+        "risk_based_four_action": 5646816.920227068
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "recovery_bounds_low": {
+      "assumption_values": {
+        "digital_treatment_cost": 5.0,
+        "human_escalation_cost": 150.0,
+        "missed_opportunity_rate": 0.015,
+        "payment_plan_over_treatment_penalty": 25.0,
+        "payment_plan_treatment_cost": 50.0,
+        "recovery_rate_bounds": {
+          "DIGITAL_REMINDER": [
+            0.01,
+            0.05
+          ],
+          "HUMAN_ESCALATION": [
+            0.04,
+            0.125
+          ],
+          "PAYMENT_PLAN_REVIEW": [
+            0.03,
+            0.1
+          ]
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "always_payment_plan_review",
+      "policy_utilities": {
+        "always_digital_reminder": 1225747.1618477665,
+        "always_human_escalation": 2836108.6700562676,
+        "always_no_contact": -667057.0499999999,
+        "always_payment_plan_review": 2791481.503254816,
+        "risk_based_four_action": 1678689.3000756886
+      },
+      "ranking": [
+        "always_human_escalation",
+        "always_payment_plan_review",
+        "risk_based_four_action",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    }
+  },
+  "simulation_version": "phase4_v1",
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec",
+  "utility_decomposition": {
+    "absolute": {
+      "additional_over_treatment_penalty": 75220.0,
+      "additional_policy_penalty": 0.0,
+      "additional_simulated_recovery": 2240085.386358254,
+      "additional_treatment_cost": 168755.0,
+      "avoided_missed_opportunity_penalty": 236724.50999999998,
+      "net_utility_advantage": 2232834.896358254
+    },
+    "comparison": "always_payment_plan_review minus risk_based_four_action",
+    "per_account": {
+      "additional_over_treatment_penalty": 16.715555555555557,
+      "additional_policy_penalty": 0.0,
+      "additional_simulated_recovery": 497.79675252405644,
+      "additional_treatment_cost": 37.50111111111111,
+      "avoided_missed_opportunity_penalty": 52.605446666666666,
+      "net_utility_advantage": 496.18553252405644
+    }
+  },
+  "value_units": "simulated_inr_units"
+}

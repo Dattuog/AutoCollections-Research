@@ -1,0 +1,314 @@
+{
+  "artifact_version": 1,
+  "audit": "phase4_6_heterogeneous_simulator_sensitivity",
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "disclaimer": "All recovery and utility values are deterministic research simulation outputs, not observed bank outcomes, revenue, savings, or causal treatment effects.",
+  "dominance_diagnostic": {
+    "base_unconstrained_winner": "always_human_escalation",
+    "base_winner_max_action_rate": 1.0,
+    "most_common_unconstrained_winner": "always_human_escalation",
+    "most_common_winner_count": 7,
+    "scenario_count": 7,
+    "static_beats_risk_scenario_count": 7,
+    "warning_only": true,
+    "warnings": [
+      "always_human_escalation treats nearly the entire population and has the highest unconstrained base-scenario utility.",
+      "A static policy beats risk_based_four_action in 7/7 sensitivity scenarios.",
+      "always_human_escalation is the unconstrained winner in 7/7 scenarios."
+    ]
+  },
+  "evaluation_split": "validation",
+  "freeze_diagnostics": {
+    "assumptions_are_explainable": true,
+    "oracle_uses_multiple_actions_at_one_percent_or_more": true,
+    "preliminary_ready_for_phase5": false,
+    "single_static_action_not_broadly_dominant": false,
+    "treatment_effectiveness_is_heterogeneous": true
+  },
+  "hidden_test_evaluated": false,
+  "sensitivity_scenarios": {
+    "base": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.1,
+          "HUMAN_ESCALATION": 0.22,
+          "PAYMENT_PLAN_REVIEW": 0.16
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 5.0,
+          "HUMAN_ESCALATION": 150.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 50.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 5.0,
+          "unnecessary_human_escalation": 100.0,
+          "unnecessary_payment_plan_review": 25.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.015
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 4908956.206726913,
+      "policy_utilities": {
+        "always_digital_reminder": 676927.8057206483,
+        "always_human_escalation": 3207155.489876187,
+        "always_no_contact": -349313.1466238805,
+        "always_payment_plan_review": 1034742.6228388948,
+        "risk_based_four_action": 1436422.554633695
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "missed_opportunity_high": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.1,
+          "HUMAN_ESCALATION": 0.22,
+          "PAYMENT_PLAN_REVIEW": 0.16
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 5.0,
+          "HUMAN_ESCALATION": 150.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 50.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 5.0,
+          "unnecessary_human_escalation": 100.0,
+          "unnecessary_payment_plan_review": 25.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.03
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 4908952.763085492,
+      "policy_utilities": {
+        "always_digital_reminder": 676927.8057206483,
+        "always_human_escalation": 3207155.489876187,
+        "always_no_contact": -698626.293247761,
+        "always_payment_plan_review": 1034742.6228388948,
+        "risk_based_four_action": 1331540.1299052024
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "missed_opportunity_low": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.1,
+          "HUMAN_ESCALATION": 0.22,
+          "PAYMENT_PLAN_REVIEW": 0.16
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 5.0,
+          "HUMAN_ESCALATION": 150.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 50.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 5.0,
+          "unnecessary_human_escalation": 100.0,
+          "unnecessary_payment_plan_review": 25.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.005
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 4908963.039849035,
+      "policy_utilities": {
+        "always_digital_reminder": 676927.8057206483,
+        "always_human_escalation": 3207155.489876187,
+        "always_no_contact": -116437.71554129348,
+        "always_payment_plan_review": 1034742.6228388948,
+        "risk_based_four_action": 1506344.1711193565
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "treatment_effect_high": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.15000000000000002,
+          "HUMAN_ESCALATION": 0.33,
+          "PAYMENT_PLAN_REVIEW": 0.24
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 5.0,
+          "HUMAN_ESCALATION": 150.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 50.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 5.0,
+          "unnecessary_human_escalation": 100.0,
+          "unnecessary_payment_plan_review": 25.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.015
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 7411429.784637236,
+      "policy_utilities": {
+        "always_digital_reminder": 1035404.2085809726,
+        "always_human_escalation": 5689108.234814281,
+        "always_no_contact": -349313.1466238805,
+        "always_payment_plan_review": 1708426.4342583423,
+        "risk_based_four_action": 2241400.0443147887
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "treatment_effect_low": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.05,
+          "HUMAN_ESCALATION": 0.11,
+          "PAYMENT_PLAN_REVIEW": 0.08
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 5.0,
+          "HUMAN_ESCALATION": 150.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 50.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 5.0,
+          "unnecessary_human_escalation": 100.0,
+          "unnecessary_payment_plan_review": 25.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.015
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 2407984.390577729,
+      "policy_utilities": {
+        "always_digital_reminder": 318451.40286032413,
+        "always_human_escalation": 725202.7449380935,
+        "always_no_contact": -349313.1466238805,
+        "always_payment_plan_review": 361058.8114194474,
+        "risk_based_four_action": 631445.0649526012
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "treatment_friction_high": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.1,
+          "HUMAN_ESCALATION": 0.22,
+          "PAYMENT_PLAN_REVIEW": 0.16
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 10.0,
+          "HUMAN_ESCALATION": 300.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 100.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 10.0,
+          "unnecessary_human_escalation": 200.0,
+          "unnecessary_payment_plan_review": 50.0
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.015
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 4815989.214199672,
+      "policy_utilities": {
+        "always_digital_reminder": 636902.8057206483,
+        "always_human_escalation": 2181655.489876187,
+        "always_no_contact": -349313.1466238805,
+        "always_payment_plan_review": 722117.6228388948,
+        "risk_based_four_action": 1367772.554633695
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    },
+    "treatment_friction_low": {
+      "assumption_values": {
+        "action_base_effects": {
+          "DIGITAL_REMINDER": 0.1,
+          "HUMAN_ESCALATION": 0.22,
+          "PAYMENT_PLAN_REVIEW": 0.16
+        },
+        "costs": {
+          "DIGITAL_REMINDER": 2.5,
+          "HUMAN_ESCALATION": 75.0,
+          "NO_CONTACT": 0.0,
+          "PAYMENT_PLAN_REVIEW": 25.0
+        },
+        "experience_penalties": {
+          "unnecessary_digital_contact": 2.5,
+          "unnecessary_human_escalation": 50.0,
+          "unnecessary_payment_plan_review": 12.5
+        },
+        "missed_opportunity": {
+          "no_contact_recoverable_exposure_rate": 0.015
+        }
+      },
+      "highest_utility_policy": "always_human_escalation",
+      "highest_utility_policy_without_violations": "risk_based_four_action",
+      "oracle_utility": 4957205.341466978,
+      "policy_utilities": {
+        "always_digital_reminder": 696940.3057206483,
+        "always_human_escalation": 3719905.489876187,
+        "always_no_contact": -349313.1466238805,
+        "always_payment_plan_review": 1191055.1228388948,
+        "risk_based_four_action": 1470747.554633695
+      },
+      "ranking": [
+        "always_human_escalation",
+        "risk_based_four_action",
+        "always_payment_plan_review",
+        "always_digital_reminder",
+        "always_no_contact"
+      ]
+    }
+  },
+  "simulation_version": "phase4_v2",
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec",
+  "value_units": "simulated_inr_units"
+}

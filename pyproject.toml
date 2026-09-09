@@ -1,0 +1,35 @@
+[project]
+name = "autocollections-research"
+version = "0.1.0"
+description = "Reproducible research benchmark for simulated collections treatment policies"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "joblib",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pyyaml",
+    "scikit-learn",
+    "ucimlrepo",
+    "xlrd",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.uv]
+cache-dir = ".uv-cache"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

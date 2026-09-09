@@ -1,0 +1,14 @@
+{
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "evaluator_sha256": "ce12ee3e53f2af91ac7b00af24e50476fe28824dbf7d47c509608ee78ef46fc3",
+  "evaluator_version": "phase5_evaluator_v1",
+  "feasibility_implementation_sha256": "490a6ef3cc97094f2759d11bf68e05e4a23ab025ebb9c055a14a38151c1e740b",
+  "row_count": 30000,
+  "simulator_config_sha256": "73ead1396946f06fb7bc8679a2b59254ba577cc7f5678f3940be1d92d9d069d5",
+  "simulator_implementation_sha256": "f9e609fdbb73ec26889882e44c5bccd1d19083d76d2cf82188414d5eaf02f5a0",
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec",
+  "strong_baseline_artifact_sha256": "463363fda5a9cd88de59ac5c862fdc6dace1782c95240f6b23522e958029b5ec",
+  "strong_baseline_id": "top35_human_else_digital",
+  "strong_baseline_utility_per_account": 805.1444747208843,
+  "strong_baseline_utility_total": 3623150.1362439794
+}
