@@ -12,6 +12,7 @@ from autocollections.features.approved_features import approved_feature_matrix
 from prepare import evaluate_candidate, load_research_inputs
 
 SEED = 42
+NO_CONTACT = 0
 DIGITAL_REMINDER = 1
 HUMAN_ESCALATION = 3
 HUMAN_CAPACITY = 0.35
@@ -43,6 +44,7 @@ def main() -> None:
     actions = np.full(len(probabilities), DIGITAL_REMINDER, dtype=int)
     human_count = int(np.floor(HUMAN_CAPACITY * len(probabilities)))
     exposure = X_validation["BILL_AMT1"].clip(lower=0).to_numpy()
+    actions[exposure == 0] = NO_CONTACT
     utilization = exposure / X_validation["LIMIT_BAL"].clip(lower=1).to_numpy()
     recent_payment_ratio = np.clip(
         X_validation["PAY_AMT1"].to_numpy() / X_validation["BILL_AMT1"].clip(lower=1).to_numpy(),
