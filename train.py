@@ -46,13 +46,16 @@ def main() -> None:
     exposure = X_validation["BILL_AMT1"].clip(lower=0).to_numpy()
     actions[exposure == 0] = NO_CONTACT
     utilization = exposure / X_validation["LIMIT_BAL"].clip(lower=1).to_numpy()
-    recent_payment_ratio = np.clip(
-        X_validation["PAY_AMT1"].to_numpy() / X_validation["BILL_AMT1"].clip(lower=1).to_numpy(),
+    bill_columns = [f"BILL_AMT{month}" for month in range(1, 7)]
+    payment_columns = [f"PAY_AMT{month}" for month in range(1, 7)]
+    mean_payment_ratio = np.clip(
+        X_validation[payment_columns].to_numpy()
+        / X_validation[bill_columns].clip(lower=1).to_numpy(),
         0,
         1,
-    )
+    ).mean(axis=1)
     allocation_score = (
-        probabilities * np.power(exposure, 0.60) * (1 + utilization) * (2 - recent_payment_ratio)
+        probabilities * np.power(exposure, 0.60) * (1 + utilization) * (2 - mean_payment_ratio)
     )
     actions[np.argsort(-allocation_score, kind="stable")[:human_count]] = HUMAN_ESCALATION
     candidate = pd.DataFrame(
