@@ -25,6 +25,7 @@ PROTECTED_FILES = (
     "reports/simulator_sensitivity_v2.json",
     "reports/feasibility_audit_v2.json",
     "reports/evaluator_identity.json",
+    "reports/final_selection_manifest.json",
 )
 PROTECTED_DIRECTORIES = ("autocollections", "scripts", "tests")
 
