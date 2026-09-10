@@ -14,5 +14,8 @@ artifacts/approved/*
 reports/eda_summary.json
 reports/preparation_summary.json
 reports/figures/*.png
+!reports/figures/research_trajectory.png
+!reports/figures/final_performance.png
+!reports/figures/utility_decomposition.png
 reports/experiments/*
 run.log

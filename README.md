@@ -1,207 +1,342 @@
 # AutoCollections Research
 
-AutoCollections Research applies the AutoResearch pattern to a public credit-default
-dataset: protected preparation and evaluation code surrounds one later agent-editable
-candidate. The eventual objective is simulated business utility under model-quality,
-cost, operational, and policy constraints—not classification accuracy alone.
+**Autonomous next-best-action research for financial operations, evaluated with a frozen,
+deterministic business simulator and hard operational constraints.**
 
-## Current scope
+> All monetary values are `simulated_inr_units`. They are benchmark outputs—not observed
+> bank savings, collections recovery, revenue, or causal treatment effects.
 
-Phases 1–4 provide the reproducible environment, UCI data loader, approved financial
-feature view, deterministic train/validation/hidden-test split, scripted EDA, and
-default-risk and simulated treatment-policy baselines. Candidate training, experiment
-automation, and final evaluation belong to later phases and are not implemented yet.
+## Headline result
 
-## Data and responsible-use boundary
+Fifty autonomous experiments produced 15 KEEP decisions and selected `exp_039` before the
+hidden test was opened. The final policy improved hidden utility/account by **29.1964%**
+over the frozen B4 benchmark, with a paired uplift of **230.9740/account** and a 95%
+bootstrap confidence interval of **[181.1610, 285.8786]**.
 
-The project uses the UCI *Default of Credit Card Clients* dataset (ID 350), licensed
-CC BY 4.0. `SEX`, `EDUCATION`, `MARRIAGE`, and `AGE` are excluded from the official
-model/policy feature matrix. This repository uses public data and must not make real
-customer decisions or process real PII.
+| Result | Utility/account |
+|---|---:|
+| B4 validation benchmark | 805.1445 |
+| Final validation (`exp_039`) | 1007.5752 |
+| B4 hidden test | 791.1042 |
+| Final hidden test | **1022.0782** |
 
-The dataset has no historical treatment outcomes. Any recovery, cost, or treatment
-effect introduced in a later phase will be a deterministic simulation—not observed
-bank savings or causal evidence.
+```text
+Hidden improvement over B4: +29.1964%
+Paired hidden uplift:       +230.9740/account
+Paired bootstrap 95% CI:    [181.1610, 285.8786]
+```
 
-## Architecture
+![Research trajectory](reports/figures/research_trajectory.png)
 
-- `prepare.py`: protected dataset preparation and split creation.
-- `autocollections/data/`: protected loading, validation, schema, and split logic.
-- `autocollections/features/`: protected approved feature view.
-- `train.py`: reserved for the later agent-editable candidate.
-- `program.md` and the evaluator/simulator: reserved for later protected phases.
+## Business problem
 
-## Quick start
+A collections operation cannot treat every account identically. Contact consumes money
+and customer attention; payment-plan review and human escalation consume progressively
+scarcer capacity; no contact can miss recoverable value. The decision is therefore not
+just “who might default?” but “which permitted action should this account receive under
+cost, experience, and operational constraints?”
+
+## Why risk prediction is insufficient
+
+A high default probability does not establish that an expensive action is appropriate.
+The same risk can correspond to different exposure, payment behavior, utilization, and
+delinquency patterns. AutoCollections separates:
+
+```text
+risk model → treatment policy → action
+```
+
+from the protected evaluation process:
+
+```text
+approved behavior + offline outcome → simulated response → utility
+```
+
+ROC-AUC, PR-AUC, and Brier score remain diagnostics. KEEP decisions depend on feasible
+protected business utility.
+
+## AutoResearch architecture
+
+```mermaid
+flowchart LR
+    P["program.md<br/>research charter"] --> A["Research agent"]
+    A --> T["train.py<br/>agent-editable"]
+    T --> C["Candidate predictions<br/>ID · risk · action"]
+
+    subgraph Protected["Protected validation evaluator"]
+        E["Schema + integrity checks"] --> S["phase4_v2 simulator"]
+        S --> F["Hard feasibility<br/>human ≤ 35%"]
+        F --> B["Protected business score"]
+    end
+
+    C --> E
+    B --> D{"Strict improvement<br/>and eligible?"}
+    D -->|KEEP| G["Git commit"]
+    D -->|REVERT| R["Restore train.py"]
+    G --> L["results.tsv + JSON reports"]
+    R --> L
+    L --> A
+
+    subgraph Final["Consumed final evaluation"]
+        H["Frozen exp_039"] --> X["One-time hidden evaluator"]
+        X --> O["final_hidden_evaluation.json"]
+    end
+
+    classDef editable fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef protected fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef hidden fill:#ffedd5,stroke:#ea580c,color:#431407;
+    class T editable;
+    class E,S,F,B protected;
+    class H,X,O hidden;
+```
+
+- `train.py` was the only research implementation modified autonomously.
+- Data preparation, approved features, simulator, feasibility, metrics, tests, and
+  evaluator identity were protected by hashes.
+- Rejected candidates restored only `train.py`; every outcome remained in the ledger.
+- Hidden evaluation was a separate, one-time path after candidate selection.
+
+## Dataset and leakage-safe split
+
+The project uses the UCI **Default of Credit Card Clients** dataset (ID 350): 30,000
+public rows under CC BY 4.0. It predicts `default_next_month` from financial and repayment
+history.
+
+| Split | Rows |
+|---|---:|
+| Train | 21,000 |
+| Validation | 4,500 |
+| Hidden test | 4,500 |
+
+The split is deterministic and stratified. Rows with identical approved model features
+are grouped into one split, eliminating cross-split duplicate leakage. The canonical split
+SHA-256 is:
+
+```text
+6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec
+```
+
+`SEX`, `EDUCATION`, `MARRIAGE`, and `AGE` are excluded from every official model and
+treatment-policy feature matrix.
+
+## Protected evaluator
+
+Evaluator `phase5_evaluator_v1` verifies the dataset, split, simulator, assumptions,
+feasibility implementation, candidate schema, and strong baseline before scoring.
+
+```text
+Evaluator SHA-256:
+ce12ee3e53f2af91ac7b00af24e50476fe28824dbf7d47c509608ee78ef46fc3
+```
+
+Candidate output is exactly:
+
+```text
+sample_id | predicted_probability | action
+```
+
+Invalid rows, actions, probabilities, ordering, protected-file changes, or hidden access
+invalidate the candidate. Human escalation above 35% yields `PRIMARY_SCORE_ELIGIBLE=false`
+and can never be KEEP-ed regardless of raw utility.
+
+## Business simulator
+
+`phase4_v2` is deterministic and uses only approved financial/behavioral inputs. It derives
+simple ability-to-pay, engagement, and severity proxies, then calculates heterogeneous
+action suitability:
+
+```text
+simulated recovery = exposure × action base effect × customer/action suitability
+```
+
+Utility reports recovery, treatment cost, over-treatment penalty, missed-opportunity
+penalty, policy penalty, and net utility separately. Treatment effectiveness does not use
+the candidate risk probability; the policy uses risk to choose an action, while the
+protected simulator independently grades the action using behavior and the offline outcome.
+
+The benchmark hierarchy was:
+
+- B0: always no contact;
+- B1: always digital reminder;
+- B2: always payment-plan review;
+- B3: original four-band risk policy;
+- B4: top 35% risk to human, everyone else digital—the strongest feasible starting point.
+
+## Experiment protocol
+
+Each experiment followed one loop:
+
+1. state one falsifiable hypothesis;
+2. make one coherent `train.py` change;
+3. run under a bounded, sanitized process environment;
+4. validate protected hashes before and after execution;
+5. accept only feasible strict score improvements;
+6. commit KEEP candidates or restore REVERT/CRASH/INVALID candidates;
+7. append exactly one TSV row and one JSON report.
+
+The complete history is in [`results.tsv`](results.tsv). Research stopped permanently
+after experiment 50.
+
+## Research trajectory
+
+| Milestone | Discovery | Validation utility/account |
+|---|---|---:|
+| B4 | Top 35% risk → human; remainder digital | 805.1445 |
+| exp_001 | Risk × log exposure | 905.0170 |
+| exp_002 | Risk × √exposure | 987.8621 |
+| exp_009 | Exposure exponent 0.60 | 991.5793 |
+| exp_011 | Add utilization-aware ranking | 997.3417 |
+| exp_024 | Small HistGradientBoosting model | 998.2870 |
+| exp_026 | Recent payment/bill behavior | 1000.8407 |
+| exp_031 | No contact at zero exposure | 1001.7518 |
+| exp_032 | Six-month mean payment ratio | 1002.1541 |
+| exp_036 | Depth-constrained HGB | 1005.4787 |
+| exp_037 | No contact below 1,000 exposure | 1005.6690 |
+| exp_039 | Slower-learning final HGB | **1007.5752** |
+
+Fifteen experiments were kept; 34 were reverted and one controlled crash verified recovery.
+
+## Final policy
+
+The selected `exp_039` model is a depth-3 `HistGradientBoostingClassifier` using approved
+raw and derived features. Human allocation ranks accounts by:
+
+```text
+predicted risk
+× positive current balance^0.60
+× (1 + utilization)
+× (2 - six-month mean payment-to-bill ratio)
+```
+
+- current positive balance below 1,000 → `NO_CONTACT`;
+- top 35% allocation score → `HUMAN_ESCALATION`;
+- remaining accounts → `DIGITAL_REMINDER`;
+- `PAYMENT_PLAN_REVIEW` was not selected by the final policy.
+
+![Final validation and hidden performance](reports/figures/final_performance.png)
+
+## Validation versus hidden test
+
+| Metric | Validation | Hidden | Change |
+|---|---:|---:|---:|
+| Utility/account | 1007.5752 | **1022.0782** | +14.5030 |
+| ROC-AUC | 0.787476 | 0.768519 | -0.018958 |
+| PR-AUC | 0.563510 | 0.534956 | -0.028554 |
+| Brier score | 0.132534 | 0.137765 | +0.005231 |
+
+The final hidden utility was 4,599,351.74 versus B4’s 3,559,968.70. The hidden gain
+retained 114.10% of the validation uplift and was categorized as **strong generalization**.
+The probability diagnostics weakened modestly; this did not negate the measured protected
+business-utility improvement.
+
+![Hidden utility decomposition](reports/figures/utility_decomposition.png)
+
+## Important failed experiments
+
+Negative results were retained rather than hidden:
+
+- linear exposure weighting and additive need scores underperformed multiplicative ranking;
+- recent/persistent delinquency multipliers and balance-trend features added no utility;
+- reducing human capacity below 35% consistently lost value;
+- payment-plan fallback rules were close in places but never improved the accepted score;
+- raw-only HGB lost value relative to approved derived features;
+- deeper trees, larger leaves, stronger L2, balanced HGB, and a seven-leaf model regressed;
+- sigmoid calibration and an HGB/logistic ensemble worsened treatment allocation;
+- broader low-exposure no-contact rules sacrificed more recovery than they saved.
+
+## Integrity and leakage prevention
+
+- protected files are listed in `configs/protected_manifest.json`;
+- evaluator identity and candidate lineage are SHA-256-addressed;
+- validation labels never enter policy logic;
+- row-level oracle actions are never exposed to `train.py`;
+- duplicate approved-feature groups never cross split boundaries;
+- all 50 experiments used the same validation evaluator;
+- final selection was recorded before hidden outcomes were accessed;
+- `train.py` remained byte-identical throughout final evaluation;
+- no post-hidden tuning occurred.
+
+> **Phase 7 has already been consumed.** `scripts/final_eval.py` is historical/final-only.
+> Do not run it as part of reproduction. A one-time start marker prevents accidental reruns.
+
+## Limitations
+
+- UCI credit default is a proxy dataset, not real collections-treatment data.
+- Treatment responses are simulated and are not causal treatment-effect estimates.
+- `simulated_inr_units` are not realized savings, revenue, or avoided credit loss.
+- Demographic variables were excluded; this does not eliminate all proxy/fairness risks.
+- Payment-plan review was never selected by the final policy on validation or hidden data.
+- The 35% human-escalation capacity is an assumed operational constraint.
+- The simulator’s behavioral proxies and economics are explainable assumptions, not
+  externally validated collections effects.
+- Isolation protects the research process and detects file changes; it is not a hostile-code
+  security sandbox.
+
+## Reproduction
 
 Requires Python 3.12 and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
-uv sync
-uv run pytest -q
+# Environment
+uv sync --locked
+
+# Public data preparation and frozen evaluator verification
 uv run prepare.py
-uv run python scripts/eda.py
+uv run python scripts/check_protected.py
+
+# Validation-only risk baselines
 uv run python -m autocollections.evaluation.baselines
-uv run python scripts/run_policy_baselines.py
+
+# Selected-policy validation dry run (never accesses hidden outcomes)
 uv run train.py
+
+# Rebuild presentation figures from existing frozen artifacts
+uv run python reports/generate_figures.py
+
+# Inspect the complete historical ledger
+column -t -s $'\t' results.tsv | less -S
 ```
+
+The final hidden artifact is available for inspection at
+`reports/final_hidden_evaluation.json`; there is intentionally no reproduction command for
+rerunning it.
 
 If UCI retrieval is unavailable, place the original workbook at
-`data/raw/default_of_credit_card_clients.xls`; raw and processed data are ignored by Git.
+`data/raw/default_of_credit_card_clients.xls`. Raw and processed data are excluded from Git.
 
-## Benchmark assumptions
-
-The split seed is 42 with 70% train, 15% validation, and 15% hidden test. Later phases
-must enforce the configured quality and policy constraints. These are project benchmark
-assumptions, not production policy recommendations.
-
-The source data contains 35 duplicate rows beyond the first copy when all 23 features
-and the target are compared. Comparing features without the target finds 56 duplicates;
-21 feature groups contain conflicting targets. The 19 approved model features produce
-817 duplicates across 134 groups, 85 with conflicting targets. No rows are removed.
-Instead, the deterministic stratified split keeps every identical approved-feature group
-within one split, preventing model-visible duplicate leakage while preserving exact
-21,000/4,500/4,500 sizes and target counts.
-
-## Validation baselines
-
-These are measured on the canonical validation split at the neutral `0.5` threshold;
-the hidden test was not evaluated.
-
-| Model | ROC-AUC | PR-AUC | Brier | Log loss | Precision | Recall | F1 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Dummy prior | 0.5000 | 0.2211 | 0.1722 | 0.5283 | 0.0000 | 0.0000 | 0.0000 |
-| Logistic, raw | 0.7310 | 0.5286 | 0.1426 | 0.4598 | 0.7201 | 0.2663 | 0.3888 |
-| Logistic, raw + derived | 0.7745 | 0.5502 | 0.1352 | 0.4325 | 0.6644 | 0.3859 | 0.4882 |
-| Logistic, derived + balanced | 0.7738 | 0.5470 | 0.1892 | 0.5704 | 0.4400 | 0.6523 | 0.5255 |
-| Logistic, balanced + sigmoid calibration | 0.7738 | 0.5471 | 0.1356 | 0.4335 | 0.6557 | 0.3789 | 0.4803 |
-
-The selected Phase 3 reference is unweighted logistic regression with approved raw and
-derived features: it has the lowest validation Brier score and log loss. Class weighting
-increases recall at `0.5` but substantially worsens calibration before sigmoid correction.
-The AutoResearch keep/discard loop remains unimplemented until its later phase.
-
-## Phase 4 treatment simulation
-
-The fixed probability bands are `<0.20` no contact, `0.20–0.45` digital reminder,
-`0.45–0.70` payment-plan review, and `>=0.70` human escalation. Simulation version
-`phase4_v1` uses nominal simulated INR-equivalent units from
-`configs/business_simulation.yaml`: action costs of 0/5/50/150, action-specific bounded
-recovery rates, penalties for unnecessary contact, a 1.5% missed-opportunity charge on
-untreated default exposure, and a 35% human-escalation capacity limit. These are benchmark
-assumptions only, not observed treatment effects or real bank economics.
-
-Validation comparison:
-
-| Policy | Recovery | Cost | Experience/over-treatment | Missed opportunity | Policy penalty | Net utility | Utility/account |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Always no contact | 0.00 | 0.00 | 0.00 | 667,057.05 | 0.00 | -667,057.05 | -148.2349 |
-| Always digital reminder | 2,531,544.32 | 22,500.00 | 17,525.00 | 0.00 | 0.00 | 2,491,519.32 | 553.6710 |
-| Always payment-plan review | 6,208,213.01 | 225,000.00 | 87,625.00 | 0.00 | 0.00 | 5,895,588.01 | 1,310.1307 |
-| Always human escalation | 9,185,717.34 | 675,000.00 | 350,500.00 | 0.00 | 731,250.00 | 7,428,967.34 | 1,650.8816 |
-| Risk-based four-action | 3,968,127.62 | 56,245.00 | 12,405.00 | 236,724.51 | 0.00 | 3,662,753.11 | 813.9451 |
-
-Always human escalation breaches the capacity constraint for 2,925 accounts and incurs
-731,250 simulated penalty units. Among policies without violations, always payment-plan
-review has the highest v1 utility. The four-action policy remains the Phase 4 baseline;
-its underperformance is evidence that later policy optimization and sensitivity analysis
-are needed, not grounds to rewrite the assumptions after observing validation results.
-
-### Phase 4.5 simulator audit
-
-The simulator passes direct counterfactual checks: non-default rows receive no recovery,
-no contact costs zero, treatment costs increase with intensity, unnecessary treatment
-cannot create positive benefit, policy selection has no realized-target input, and only
-approved features enter the risk model and simulator.
-
-Always payment-plan review exceeds the risk-based policy by 2,232,834.90 simulated units
-(496.19/account): 2,240,085.39 additional recovery and 236,724.51 avoided missed-opportunity
-penalty outweigh 168,755.00 additional treatment cost and 75,220.00 additional
-over-treatment penalty. Neither policy incurs a policy penalty.
-
-A fixed one-at-a-time sensitivity grid varies payment-plan cost and over-treatment
-penalty, digital and human costs, missed-opportunity rate, and all recovery bounds across
-low/base/high values. All 13 scenarios retain the same ranking:
+## Repository structure
 
 ```text
-always human escalation > always payment-plan review > risk-based four-action
-> always digital reminder > always no contact
+AutoCollections-Research/
+├── prepare.py                         # protected data/research entry point
+├── train.py                           # frozen selected candidate; formerly agent-editable
+├── program.md                         # research charter
+├── results.tsv                        # append-only 50-experiment ledger
+├── configs/
+│   ├── benchmark.yaml
+│   ├── business_simulation_v2.yaml
+│   └── protected_manifest.json
+├── autocollections/
+│   ├── data/                          # loading, schema, deterministic grouped split
+│   ├── features/                      # approved financial features
+│   ├── evaluation/                    # metrics, feasibility, protected evaluator
+│   └── simulator/                     # frozen heterogeneous response simulator
+├── scripts/
+│   ├── check_protected.py
+│   ├── run_experiment.py              # historical autonomous runner
+│   └── final_eval.py                  # consumed one-time hidden evaluator
+├── reports/
+│   ├── final_selection_manifest.json
+│   ├── final_hidden_evaluation.json
+│   ├── generate_figures.py
+│   └── figures/
+└── tests/                              # evaluator, isolation, simulator, runner tests
 ```
-
-Human escalation violates the capacity constraint; payment-plan review is the highest
-non-violating policy in every scenario. This broad static-policy dominance is a warning,
-not a forced ranking rule. The evaluator logic is deterministic and internally coherent,
-but the v1 economics are not yet discriminative enough to freeze for AutoResearch.
-
-### Phase 4.6 heterogeneous simulator
-
-`phase4_v2` is a separate simulator; v1 code and audit artifacts remain unchanged. It
-retains the accepted risk thresholds, costs, penalties, exposure cap, human capacity,
-canonical split, and `logistic_derived` model. Recovery is instead calculated as:
-
-```text
-exposure × action base effect × customer/action suitability
-```
-
-Base effects are 0.10 digital, 0.16 payment-plan review, and 0.22 human escalation.
-Suitability is deterministic and uses three protected behavioral proxies:
-
-- ability: 50% payment/bill ratio, 25% payment frequency, 25% inverse utilization;
-- engagement: 40% payment frequency, 35% recent payment/bill ratio, 25% improving delay;
-- severity: 45% recent delay, 30% persistent delay, 15% utilization, 10% exposure fraction.
-
-The validation oracle chooses no contact for 3,625 accounts, digital for 252, payment-plan
-review for 0, and human escalation for 623. This proves heterogeneous treatment response,
-but always-human remains the unconstrained static winner across all seven v2 sensitivity
-scenarios and violates capacity for 2,925 accounts. The risk policy is the highest-utility
-non-violating fixed policy in every scenario. At this stage the unconstrained dominance
-failed the preliminary freeze diagnostic; Phase 4.7 subsequently made feasibility the
-authoritative deployability boundary.
-
-### Phase 4.7 feasibility and capacity audit
-
-Human capacity is now a hard feasibility boundary: policies above 35% human escalation
-remain visible in raw diagnostics but are ineligible for deployable ranking, primary-score
-selection, and future KEEP decisions. Three diagnostic policies assign the highest-risk
-35% of validation accounts to human escalation and send the remainder to no contact,
-digital, or payment-plan review.
-
-The top-35%-human-else-digital policy is the highest feasible policy in the base case and
-all seven accepted v2 sensitivity scenarios. It scores 3,623,150.14 simulated units versus
-1,436,422.55 for the risk-based policy. This triggers the capacity-saturation warning:
-the evaluator rewards filling all available human capacity regardless of the more selective
-four-band treatment match. Payment-plan review also remains oracle-dominated with zero
-oracle selections. This capacity-saturating policy is accepted as B4, the legitimate
-strong feasible benchmark for research rather than a simulator failure.
-
-## Protected research boundary
-
-Phase 5 freezes the accepted v2 simulator and hard-feasibility semantics as evaluator
-`phase5_evaluator_v1`. `train.py` is the only future agent-editable research file. It
-receives approved training features/labels plus approved validation features and stable
-row IDs, then emits exactly `sample_id`, `predicted_probability`, and `action`.
-Validation outcomes remain inside the protected evaluator.
-
-The primary score is feasible simulated utility per account. Infeasible candidates receive
-`-1e18` and cannot be eligible for KEEP regardless of raw utility. The benchmark to beat is
-`top35_human_else_digital`: 3,623,150.1362 total utility, or 805.1444747/account. The
-initial `train.py` dry run reproduces it exactly. Automated experimentation is not yet
-implemented; `program.md` and `results.tsv` only define the future protocol and ledger.
-
-## Hidden-test discipline
-
-The split manifest is created once. Autonomous experiments must receive aggregate
-validation metrics only; final hidden-test evaluation is a separate, one-time human-run
-step after a candidate is frozen.
-
-## Limitations and roadmap
-
-The public dataset measures default, not intervention response. Demographic exclusion
-does not by itself eliminate proxy or fairness risks. The roadmap follows the numbered
-phases in the implementation contract; serving infrastructure and GenAI extensions stay
-out of scope until the research harness is validated.
 
 ## References
 
 - [Karpathy AutoResearch](https://github.com/karpathy/autoresearch)
-- [UCI dataset 350](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients),
-  DOI `10.24432/C55S3H`
+- [UCI Default of Credit Card Clients](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients), DOI `10.24432/C55S3H`
+
+No source author or institution is implied to endorse this project or its simulated
+business evaluator.
