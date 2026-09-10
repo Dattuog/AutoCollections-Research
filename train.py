@@ -36,7 +36,8 @@ def main() -> None:
     actions = np.full(len(probabilities), DIGITAL_REMINDER, dtype=int)
     human_count = int(np.floor(HUMAN_CAPACITY * len(probabilities)))
     exposure = X_validation["BILL_AMT1"].clip(lower=0).to_numpy()
-    allocation_score = probabilities * np.power(exposure, 0.60)
+    utilization = exposure / X_validation["LIMIT_BAL"].clip(lower=1).to_numpy()
+    allocation_score = probabilities * np.power(exposure, 0.60) * (1 + utilization)
     actions[np.argsort(-allocation_score, kind="stable")[:human_count]] = HUMAN_ESCALATION
     candidate = pd.DataFrame(
         {
