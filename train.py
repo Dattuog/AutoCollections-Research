@@ -4,10 +4,9 @@ from time import perf_counter
 
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
 
 from autocollections.features.approved_features import approved_feature_matrix
 from prepare import evaluate_candidate, load_research_inputs
@@ -26,11 +25,14 @@ def main() -> None:
     model = Pipeline(
         [
             ("imputer", SimpleImputer(strategy="median")),
-            ("scaler", StandardScaler()),
             (
                 "model",
-                LogisticRegression(
-                    C=0.5, class_weight="balanced", max_iter=2_000, random_state=SEED
+                HistGradientBoostingClassifier(
+                    learning_rate=0.08,
+                    max_iter=100,
+                    max_leaf_nodes=15,
+                    l2_regularization=1.0,
+                    random_state=SEED,
                 ),
             ),
         ]
