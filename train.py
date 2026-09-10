@@ -45,16 +45,12 @@ def main() -> None:
     exposure = X_validation["BILL_AMT1"].clip(lower=0).to_numpy()
     utilization = exposure / X_validation["LIMIT_BAL"].clip(lower=1).to_numpy()
     recent_payment_ratio = np.clip(
-        X_validation["PAY_AMT1"].to_numpy()
-        / X_validation["BILL_AMT1"].clip(lower=1).to_numpy(),
+        X_validation["PAY_AMT1"].to_numpy() / X_validation["BILL_AMT1"].clip(lower=1).to_numpy(),
         0,
         1,
     )
     allocation_score = (
-        probabilities
-        * np.power(exposure, 0.60)
-        * (1 + utilization)
-        * (2 - recent_payment_ratio)
+        probabilities * np.power(exposure, 0.60) * (1 + utilization) * (2 - recent_payment_ratio)
     )
     actions[np.argsort(-allocation_score, kind="stable")[:human_count]] = HUMAN_ESCALATION
     candidate = pd.DataFrame(
