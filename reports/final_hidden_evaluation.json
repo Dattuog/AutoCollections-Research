@@ -1,0 +1,118 @@
+{
+  "PAYMENT_PLAN_HIDDEN_USAGE_ZERO": true,
+  "artifact_version": 1,
+  "comparison": {
+    "hidden_gain_retention_ratio": 1.1410028829936445,
+    "hidden_percentage_improvement_over_b4": 29.196409370003973,
+    "hidden_utility_improvement_over_b4": 1039383.035502647,
+    "hidden_utility_improvement_per_account": 230.9740078894771,
+    "validation_gain_per_account_over_b4": 202.4306961288928,
+    "validation_to_hidden_brier_change": 0.005230606952051353,
+    "validation_to_hidden_pr_auc_change": -0.02855397132690829,
+    "validation_to_hidden_roc_auc_change": -0.018957616556877555,
+    "validation_to_hidden_utility_per_account_change": 14.502992904759708
+  },
+  "dataset_sha256": "63e0f53f2617f0d5aaef6202779b78d123dc2c8d1d5cdfffa5a7d4ca20823445",
+  "disclaimer": "All business values are deterministic simulator outputs in simulated_inr_units, not observed bank savings or causal treatment effects.",
+  "evaluated_at": "2026-09-10T12:55:15.822754+00:00",
+  "evaluation_commit": "2246f3f672725b160f61362a9c8183547d0d8088",
+  "evaluation_split": "hidden_test",
+  "evaluator_sha256": "ce12ee3e53f2af91ac7b00af24e50476fe28824dbf7d47c509608ee78ef46fc3",
+  "evaluator_version": "phase5_evaluator_v1",
+  "generalization_assessment": "strong generalization",
+  "hidden_evaluation_started_at": "2026-09-10T12:55:02.074428+00:00",
+  "hidden_target_prevalence": 0.22133333333333333,
+  "normal_research_path_unchanged": true,
+  "paired_utility_difference_confidence_interval": {
+    "confidence_level": 0.95,
+    "lower": 181.16098568646504,
+    "mean_difference": 230.97400788947732,
+    "method": "paired account-level bootstrap percentile interval",
+    "resamples": 5000,
+    "seed": 42,
+    "upper": 285.87856303496443
+  },
+  "post_hidden_tuning_performed": false,
+  "protected_integrity_after": "PASS",
+  "protected_integrity_before": "PASS",
+  "selected_candidate": {
+    "account_count": 4500,
+    "action_distribution": {
+      "DIGITAL_REMINDER": {
+        "count": 2113,
+        "rate": 0.46955555555555556
+      },
+      "HUMAN_ESCALATION": {
+        "count": 1575,
+        "rate": 0.35
+      },
+      "NO_CONTACT": {
+        "count": 812,
+        "rate": 0.18044444444444444
+      },
+      "PAYMENT_PLAN_REVIEW": {
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "average_utility_per_account": 1022.0781637545368,
+    "brier_score": 0.1377649720330105,
+    "customer_experience_penalty_total": 9175.0,
+    "digital_contact_rate": 0.46955555555555556,
+    "feasible": true,
+    "human_escalation_rate": 0.35,
+    "missed_opportunity_penalty_total": 290.2755593660071,
+    "net_business_utility": 4599351.736895416,
+    "policy_violation_count": 0,
+    "policy_violation_penalty_total": 0.0,
+    "pr_auc": 0.534955534199149,
+    "predicted_risk_mean": 0.22958196664124692,
+    "roc_auc": 0.7685188528084942,
+    "simulated_recovery_benefit_total": 4959332.012454782,
+    "treatment_cost_total": 246815.0,
+    "unnecessary_escalation_penalty_total": 103700.0
+  },
+  "selected_commit": "dd1190768980848200b5acaede8260db36f7d47b",
+  "selected_experiment": "exp_039",
+  "selected_train_sha256": "f11c6817911ba5068a46f6321493412a0af13531f5becd33828e18dfbe065ed3",
+  "selection_created_at": "2026-09-10T12:46:57Z",
+  "selection_manifest_sha256": "cc634b92291d94f6ee6a0b1af9b1dedf514f88452fd5a43c00c4bb3ca936b382",
+  "split_sha256": "6d8f4e9a9355cb49351af5fb83d6a6a938538d47c084fd039358cbed9ae0e0ec",
+  "strong_baseline_b4": {
+    "account_count": 4500,
+    "action_distribution": {
+      "DIGITAL_REMINDER": {
+        "count": 2925,
+        "rate": 0.65
+      },
+      "HUMAN_ESCALATION": {
+        "count": 1575,
+        "rate": 0.35
+      },
+      "NO_CONTACT": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "PAYMENT_PLAN_REVIEW": {
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "average_utility_per_account": 791.1041558650597,
+    "brier_score": 0.14146223349629464,
+    "customer_experience_penalty_total": 12890.0,
+    "digital_contact_rate": 0.65,
+    "feasible": true,
+    "human_escalation_rate": 0.35,
+    "missed_opportunity_penalty_total": 0.0,
+    "net_business_utility": 3559968.701392769,
+    "policy_violation_count": 0,
+    "policy_violation_penalty_total": 0.0,
+    "pr_auc": 0.5034487553555415,
+    "predicted_risk_mean": 0.22859753920700096,
+    "roc_auc": 0.7523835352826831,
+    "simulated_recovery_benefit_total": 3916333.701392769,
+    "treatment_cost_total": 250875.0,
+    "unnecessary_escalation_penalty_total": 92600.0
+  }
+}
