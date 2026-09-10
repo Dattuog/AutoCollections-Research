@@ -45,7 +45,7 @@ def main() -> None:
     actions = np.full(len(probabilities), DIGITAL_REMINDER, dtype=int)
     human_count = int(np.floor(HUMAN_CAPACITY * len(probabilities)))
     exposure = X_validation["BILL_AMT1"].clip(lower=0).to_numpy()
-    actions[exposure == 0] = NO_CONTACT
+    actions[exposure < 1_000] = NO_CONTACT
     utilization = exposure / X_validation["LIMIT_BAL"].clip(lower=1).to_numpy()
     bill_columns = [f"BILL_AMT{month}" for month in range(1, 7)]
     payment_columns = [f"PAY_AMT{month}" for month in range(1, 7)]
