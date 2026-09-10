@@ -30,6 +30,7 @@ def main() -> None:
                 "model",
                 HistGradientBoostingClassifier(
                     learning_rate=0.08,
+                    max_depth=3,
                     max_iter=100,
                     max_leaf_nodes=15,
                     l2_regularization=1.0,
