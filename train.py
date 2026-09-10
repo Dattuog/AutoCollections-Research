@@ -27,7 +27,7 @@ def main() -> None:
         [
             ("imputer", SimpleImputer(strategy="median")),
             ("scaler", StandardScaler()),
-            ("model", LogisticRegression(max_iter=2_000, random_state=SEED)),
+            ("model", LogisticRegression(C=0.5, max_iter=2_000, random_state=SEED)),
         ]
     )
     model.fit(train_features, y_train)
