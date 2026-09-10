@@ -36,6 +36,7 @@
     "scripts/audit_simulator.py": "c3aae1d6300930997fbc942c7fe15d534258241cb9e5938fb61e5f0762f5f0c5",
     "scripts/check_protected.py": "946cc4d5e9299cda2a0ac7149404557d026e7c75f1f9103974440520576e4b3b",
     "scripts/eda.py": "5480bc9d334435be418e3afc676aa38faa86183f9ccc052e71ceb7a36591ba2d",
+    "scripts/run_experiment.py": "99c5e0f9db06cbbe1144d964925124c43aada02d1ab1956b5fbbe2c21da4b15c",
     "scripts/run_policy_baselines.py": "74fcd1b384ee3b896db19115333afe013d71bc033c70f165f2c23fe82325473c",
     "scripts/run_simulator_v2.py": "608038cb15fc2a786625ccf62bb97f63deebb0f49362a1acf1ae176076d08cf4",
     "tests/test_baselines.py": "6cbf067ebbd9374a60296359f3919c4e04c1ebf4ddb8a2d32064830410aca8e9",
@@ -44,6 +45,7 @@
     "tests/test_features.py": "763523a51d9711a891f142f67b23a50e540efcd227959a3f35eaac9b9ec6b196",
     "tests/test_protected_eval.py": "48183758d1669b879668f0d685036c74a7185357ecab53254cb6c22f63e3e33e",
     "tests/test_protected_integrity.py": "2963dd756d2b091e6cde8ac85ce0b414ce1c1a9e0500891b9c914760d3013dd4",
+    "tests/test_runner.py": "dffc2b63da1c0e1dc35096608b80855027ccfaaa20c6d64f68671c6f5fe21030",
     "tests/test_simulator.py": "4668cb88d1f096140faf354a910e41fd5567b532c7fd876e5b49ece08a924470",
     "tests/test_simulator_v2.py": "c02094d9257cc7da74f372e42b9c662d91ac6dddfaa911a29f71ca82352392d4",
     "uv.lock": "7eebcc79b4b669c572dae3e29e3c5382e4907e7572a75394c5dd8953237ed48f"
