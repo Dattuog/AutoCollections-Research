@@ -98,11 +98,11 @@ FORBIDDEN_SOURCE_TEXT = (
 )
 
 
-def _git(*args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=check)
+def _git(*args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=True)
 
 
-def preflight() -> str:
+def preflight() -> tuple[str, dict[str, Any]]:
     head = _git("rev-parse", "HEAD").stdout.strip()
     if _git("branch", "--show-current").stdout.strip() != "autoresearch":
         raise RuntimeError("Phase 6 requires branch autoresearch")
@@ -115,13 +115,14 @@ def preflight() -> str:
     }
     if dirty:
         raise RuntimeError(f"Unexpected working-tree changes: {sorted(dirty)}")
+    validate_ledger_header()
     manifest = json.loads(MANIFEST_PATH.read_text())
     if any(verify_manifest(manifest).values()):
         raise RuntimeError("Protected integrity preflight failed")
     identity = evaluator_identity()
     if identity["evaluator_version"] != EVALUATOR_VERSION:
         raise RuntimeError("Frozen evaluator version mismatch")
-    return head
+    return head, identity
 
 
 def validate_candidate_source(source: str) -> None:
@@ -178,6 +179,12 @@ def decide(result: dict[str, Any] | None, best_score: float, protected_ok: bool)
     if not result["feasible"] or not result["PRIMARY_SCORE_ELIGIBLE"]:
         return "REVERT"
     return "KEEP" if result["primary_score"] > best_score else "REVERT"
+
+
+def validate_ledger_header(path: Path = LEDGER_PATH) -> None:
+    header = tuple(path.open().readline().rstrip("\n").split("\t"))
+    if header != LEDGER_FIELDS:
+        raise ValueError("results.tsv header does not match the canonical ledger schema")
 
 
 def best_score(path: Path = LEDGER_PATH) -> float:
@@ -274,13 +281,12 @@ def main() -> None:
     parser.add_argument("--timeout", type=int, default=180)
     args = parser.parse_args()
 
-    base_commit = preflight()
+    base_commit, identity = preflight()
     current_best = best_score()
     candidate_source = (ROOT / "train.py").read_text()
     candidate_hash = sha256_bytes(candidate_source.encode())
     manifest_bytes = MANIFEST_PATH.read_bytes()
     before_hashes = protected_hashes()
-    identity = evaluator_identity()
     result = None
     error = ""
     status = "CRASH"

@@ -63,6 +63,7 @@ def test_result_and_candidate_source_validation() -> None:
 def test_ledger_append_and_best_score_tracking(tmp_path: Path) -> None:
     ledger = tmp_path / "results.tsv"
     ledger.write_text("\t".join(run_experiment.LEDGER_FIELDS) + "\n")
+    run_experiment.validate_ledger_header(ledger)
     run_experiment.append_ledger(
         {"experiment_id": "exp_001", "status": "KEEP", "primary_score": 810.0},
         ledger,
@@ -77,6 +78,9 @@ def test_ledger_append_and_best_score_tracking(tmp_path: Path) -> None:
     empty = tmp_path / "empty.tsv"
     empty.write_text("\t".join(run_experiment.LEDGER_FIELDS) + "\n")
     assert run_experiment.best_score(empty) == STRONG_BASELINE_UTILITY_PER_ACCOUNT
+    empty.write_text("mutable\theader\n")
+    with pytest.raises(ValueError, match="canonical ledger schema"):
+        run_experiment.validate_ledger_header(empty)
 
 
 def test_crash_recovery_restores_only_train(tmp_path: Path, monkeypatch) -> None:
