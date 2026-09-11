@@ -1,3 +1,13 @@
+## Live Demo
+
+Try the public demo:
+
+https://autocollections-research.streamlit.app/
+
+The demo uses synthetic inputs only and the frozen exp_039 model.
+It does not retrain the model or access hidden-test data.
+
+
 # AutoCollections Research
 
 AutoCollections Research applies the AutoResearch pattern to a public credit-default
