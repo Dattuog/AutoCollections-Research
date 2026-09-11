@@ -14,6 +14,8 @@ from autocollections.features.approved_features import approved_feature_matrix
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "artifacts/frozen_exp039_model.joblib"
 MANIFEST_PATH = ROOT / "artifacts/frozen_exp039_model_manifest.json"
+EXPECTED_MODEL_SHA256 = "dbe9e60bc85cdb432771ee7fa88119d6a89820b36213c16e031b5bdb41b5e0c4"
+EXPECTED_TRAIN_SHA256 = "f11c6817911ba5068a46f6321493412a0af13531f5becd33828e18dfbe065ed3"
 ACTION_NAMES = {
     0: "NO_CONTACT",
     1: "DIGITAL_REMINDER",
@@ -137,9 +139,13 @@ def verify_frozen_artifact() -> dict:
     manifest = json.loads(MANIFEST_PATH.read_text())
     if manifest["source_experiment"] != "exp_039":
         raise ValueError("Frozen model manifest does not identify exp_039")
-    if manifest["train_py_sha256"] != _sha256(ROOT / "train.py"):
+    if manifest["train_py_sha256"] != EXPECTED_TRAIN_SHA256:
+        raise ValueError("Frozen manifest has an unexpected train.py hash")
+    if _sha256(ROOT / "train.py") != EXPECTED_TRAIN_SHA256:
         raise ValueError("Frozen train.py hash mismatch")
-    if manifest["model_artifact_sha256"] != _sha256(MODEL_PATH):
+    if manifest["model_artifact_sha256"] != EXPECTED_MODEL_SHA256:
+        raise ValueError("Frozen manifest has an unexpected model artifact hash")
+    if _sha256(MODEL_PATH) != EXPECTED_MODEL_SHA256:
         raise ValueError("Frozen model artifact hash mismatch")
     if manifest["sklearn_version"] != sklearn.__version__:
         raise ValueError("Frozen model sklearn version mismatch")

@@ -48,7 +48,7 @@
     "scripts/run_simulator_v2.py": "608038cb15fc2a786625ccf62bb97f63deebb0f49362a1acf1ae176076d08cf4",
     "tests/test_baselines.py": "6cbf067ebbd9374a60296359f3919c4e04c1ebf4ddb8a2d32064830410aca8e9",
     "tests/test_data.py": "b1acc4c4f05ebf54cc70f9fa6b238100fbf4b16f05d1dfb051edb17cbdabefd0",
-    "tests/test_demo_inference.py": "16d286e83dcecff667fd82459f6d705ee357a5352aae8f3517b1f0d5b42c7ce9",
+    "tests/test_demo_inference.py": "919ec30b6359c213ab519de7aead8af29e0adeb46dbc7c35ca5aafec7ab38077",
     "tests/test_feasibility.py": "7a6da6901f1fc321ed1653212917cde28d3dec2b8e13171e197a7fb6d355cf94",
     "tests/test_features.py": "763523a51d9711a891f142f67b23a50e540efcd227959a3f35eaac9b9ec6b196",
     "tests/test_final_eval.py": "9676cd812598feec1bf0005e3633cbf16b24494b53aded50ff9750dbd11ce779",

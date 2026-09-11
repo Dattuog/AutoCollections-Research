@@ -28,6 +28,18 @@ def test_frozen_artifact_identity_and_reconstruction_equivalence() -> None:
     assert equivalence["score_difference"] == 0.0
 
 
+def test_frozen_artifact_hash_mismatch_fails_closed(monkeypatch) -> None:
+    original_sha256 = inference._sha256
+    monkeypatch.setattr(
+        inference,
+        "_sha256",
+        lambda path: "tampered" if path == inference.MODEL_PATH else original_sha256(path),
+    )
+
+    with pytest.raises(ValueError, match="model artifact hash mismatch"):
+        inference.verify_frozen_artifact()
+
+
 def test_demo_is_synthetic_approved_feature_only_and_deterministic() -> None:
     approved = set(ALLOWED_MODEL_FEATURES)
     excluded = set(EXCLUDED_MODEL_FEATURES)

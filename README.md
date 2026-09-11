@@ -275,6 +275,19 @@ The demo shows the predicted default probability, exposure, utilization, payment
 allocation score, exact action, synthetic portfolio ranking, and frozen aggregate research
 results. It is a research explainer—not an operational collections recommendation system.
 
+### Live Demo
+
+<https://your-streamlit-app.streamlit.app>
+
+- frozen `exp_039` model;
+- synthetic inputs only;
+- no retraining at startup;
+- business values are simulated, not realized savings.
+
+For Streamlit Community Cloud, select `demo/app.py` as the entry point and Python 3.12 in
+Advanced settings. The root `uv.lock` supplies the locked environment; no secrets, external
+services, or system packages are required.
+
 ## Limitations
 
 - UCI credit default is a proxy dataset, not real collections-treatment data.
