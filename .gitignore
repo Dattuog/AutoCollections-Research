@@ -17,5 +17,7 @@ reports/figures/*.png
 !reports/figures/research_trajectory.png
 !reports/figures/final_performance.png
 !reports/figures/utility_decomposition.png
+!reports/figures/phase9_demo_decision_lab.png
+!reports/figures/phase9_demo_research_summary.png
 reports/experiments/*
 run.log

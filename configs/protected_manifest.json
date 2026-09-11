@@ -1,6 +1,8 @@
 {
   "files": {
     "AUTOCOLLECTIONS_CODEX_IMPLEMETATION.md": "ef81f3b91a806511ed887370985e2cff146867734c79b5bc3005e0bd6adce219",
+    "artifacts/frozen_exp039_model.joblib": "dbe9e60bc85cdb432771ee7fa88119d6a89820b36213c16e031b5bdb41b5e0c4",
+    "artifacts/frozen_exp039_model_manifest.json": "4bcc9e4f6dee3bd59045dd9b121f2173f4f79abccad3f241782ce7a8aa814cf1",
     "autocollections/__init__.py": "cbe4a6c88a630132882c026b87810951010249b8a12620b9d46e1e949d906c52",
     "autocollections/artifacts/__init__.py": "3d9cbd69e15ee4d37fc376a851dcaa4497f3587891149dc5edc24e29b9aebc2d",
     "autocollections/data/__init__.py": "7582ed1f20aca5429098b68512ed0459eda8873843f033df5fe4f5876242d036",
@@ -24,18 +26,21 @@
     "configs/business_simulation_v2.yaml": "73ead1396946f06fb7bc8679a2b59254ba577cc7f5678f3940be1d92d9d069d5",
     "prepare.py": "ed39332bac0531919b3c68c9b819b7a30658c6aa186de6f2b80aae690a2f3c81",
     "program.md": "18c0f0d92fad62949b4338e4277b0b4188f78798358502ea2c7479a0a384ed12",
-    "pyproject.toml": "a28672ffefa7d0643a7a7a669eb1113971d0bee93efe2e25a47e3f457bab49e1",
+    "pyproject.toml": "7d4ec8a81035c473027d015794af8590965d7b12292227e372bd60e36d2d7f2b",
     "reports/baselines.json": "3aef0f6f18ab66a44a2f3bd975e2f634bf38be9a2ca73d4b139881d9481b0b29",
     "reports/evaluator_identity.json": "fdca6ef7c046f6d4917271de4a34576ef32635bf60cf0b87672b78a5677b94c5",
     "reports/feasibility_audit_v2.json": "463363fda5a9cd88de59ac5c862fdc6dace1782c95240f6b23522e958029b5ec",
+    "reports/final_hidden_evaluation.json": "b183fca26c62b048ba953655ca99b8bae53d8621720acae7938940695e8f08c5",
+    "reports/final_hidden_evaluation_started.json": "0554f6df2a2392f0c817b13685fd2e1b562ee6e81b0992d5816679dde35e6a8b",
     "reports/final_selection_manifest.json": "cc634b92291d94f6ee6a0b1af9b1dedf514f88452fd5a43c00c4bb3ca936b382",
     "reports/policy_baselines.json": "5136c31f4a28a53f6b0e56e3387d420c48fe268f770f10fdbce7eb61b5cd0e3b",
     "reports/policy_baselines_v2.json": "597cc0dc98774d5b8fa79795c8b195abd8143ab0973c1a95b7b9bc38423cc7b9",
     "reports/simulator_sensitivity.json": "7467f7a2b413097f56ea24e7e465ff1a2709a114ea5271c2a35f8a981fe0add0",
     "reports/simulator_sensitivity_v2.json": "9de2d5a46b3870dec10250ee7dca1277624eb11f14833f31b06aecf812d0dea4",
+    "results.tsv": "08f1df3024565c1d286f46954343aef45dcec204e011872e9db7baeba57e2cff",
     "scripts/audit_feasibility_v2.py": "422bd60f700a7c8920e6ca1c2c3b0c1e25c72c041b3044b4dd1974d53ab94e6e",
     "scripts/audit_simulator.py": "c3aae1d6300930997fbc942c7fe15d534258241cb9e5938fb61e5f0762f5f0c5",
-    "scripts/check_protected.py": "ad3f46654f93a1c081d2c68f94500651b37bb3dd8e4a48ec7e1db199799e8cb7",
+    "scripts/check_protected.py": "a13111d6527c410920b4a67c5d666c3c049708cd157eed8f11f268603df2406b",
     "scripts/eda.py": "5480bc9d334435be418e3afc676aa38faa86183f9ccc052e71ceb7a36591ba2d",
     "scripts/final_eval.py": "2bbc1e4fae7b35cecb26aa07303eef36d141664e4bb4978866a625c862764e95",
     "scripts/run_experiment.py": "03fab251b4f03b66607ce1202a16b3acd4d3b48f721da9cbba5f92ee5d0d048c",
@@ -43,6 +48,7 @@
     "scripts/run_simulator_v2.py": "608038cb15fc2a786625ccf62bb97f63deebb0f49362a1acf1ae176076d08cf4",
     "tests/test_baselines.py": "6cbf067ebbd9374a60296359f3919c4e04c1ebf4ddb8a2d32064830410aca8e9",
     "tests/test_data.py": "b1acc4c4f05ebf54cc70f9fa6b238100fbf4b16f05d1dfb051edb17cbdabefd0",
+    "tests/test_demo_inference.py": "16d286e83dcecff667fd82459f6d705ee357a5352aae8f3517b1f0d5b42c7ce9",
     "tests/test_feasibility.py": "7a6da6901f1fc321ed1653212917cde28d3dec2b8e13171e197a7fb6d355cf94",
     "tests/test_features.py": "763523a51d9711a891f142f67b23a50e540efcd227959a3f35eaac9b9ec6b196",
     "tests/test_final_eval.py": "9676cd812598feec1bf0005e3633cbf16b24494b53aded50ff9750dbd11ce779",
@@ -51,7 +57,8 @@
     "tests/test_runner.py": "34c0bb09b34108b0e6b84a577446798513ea5820bca3b283395b8c5002521917",
     "tests/test_simulator.py": "4668cb88d1f096140faf354a910e41fd5567b532c7fd876e5b49ece08a924470",
     "tests/test_simulator_v2.py": "c02094d9257cc7da74f372e42b9c662d91ac6dddfaa911a29f71ca82352392d4",
-    "uv.lock": "7eebcc79b4b669c572dae3e29e3c5382e4907e7572a75394c5dd8953237ed48f"
+    "train.py": "f11c6817911ba5068a46f6321493412a0af13531f5becd33828e18dfbe065ed3",
+    "uv.lock": "e0cc613e0c5334ec2f5054523a2ca7bcb385be1abce86c041cd2177d8d86cff5"
   },
   "manifest_version": 1
 }

@@ -259,6 +259,22 @@ Negative results were retained rather than hidden:
 > **Phase 7 has already been consumed.** `scripts/final_eval.py` is historical/final-only.
 > Do not run it as part of reproduction. A one-time start marker prevents accidental reruns.
 
+## Read-only portfolio demo
+
+Phase 9 adds a local Streamlit demonstration of the permanently selected `exp_039`
+candidate. It loads a verified serialized model and scores only editable synthetic profiles;
+it does not train, read prepared customer rows, invoke the protected evaluator, or access the
+hidden split. Treatment is portfolio-relative: the frozen policy ranks a 24-account synthetic
+portfolio and assigns human escalation to at most 35%.
+
+```bash
+uv run streamlit run demo/app.py
+```
+
+The demo shows the predicted default probability, exposure, utilization, payment behavior,
+allocation score, exact action, synthetic portfolio ranking, and frozen aggregate research
+results. It is a research explainer—not an operational collections recommendation system.
+
 ## Limitations
 
 - UCI credit default is a proxy dataset, not real collections-treatment data.
@@ -310,6 +326,12 @@ If UCI retrieval is unavailable, place the original workbook at
 AutoCollections-Research/
 ├── prepare.py                         # protected data/research entry point
 ├── train.py                           # frozen selected candidate; formerly agent-editable
+├── demo/
+│   ├── app.py                         # local read-only Streamlit presentation
+│   └── inference.py                   # verified frozen-model synthetic inference
+├── artifacts/
+│   ├── frozen_exp039_model.joblib
+│   └── frozen_exp039_model_manifest.json
 ├── program.md                         # research charter
 ├── results.tsv                        # append-only 50-experiment ledger
 ├── configs/

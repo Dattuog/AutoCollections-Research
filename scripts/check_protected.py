@@ -13,8 +13,12 @@ PROTECTED_FILES = (
     "AUTOCOLLECTIONS_CODEX_IMPLEMETATION.md",
     "program.md",
     "prepare.py",
+    "train.py",
+    "results.tsv",
     "pyproject.toml",
     "uv.lock",
+    "artifacts/frozen_exp039_model.joblib",
+    "artifacts/frozen_exp039_model_manifest.json",
     "configs/benchmark.yaml",
     "configs/business_simulation.yaml",
     "configs/business_simulation_v2.yaml",
@@ -26,6 +30,8 @@ PROTECTED_FILES = (
     "reports/feasibility_audit_v2.json",
     "reports/evaluator_identity.json",
     "reports/final_selection_manifest.json",
+    "reports/final_hidden_evaluation.json",
+    "reports/final_hidden_evaluation_started.json",
 )
 PROTECTED_DIRECTORIES = ("autocollections", "scripts", "tests")
 
