@@ -1,3 +1,13 @@
+# AutoCollections Research
+
+**Autonomous next-best-action research for financial operations, evaluated with a frozen,
+deterministic business simulator and hard operational constraints.**
+
+> All monetary values are `simulated_inr_units`. They are benchmark outputs—not observed
+> bank savings, collections recovery, revenue, or causal treatment effects.
+
+
+
 ## Live Demo
 
 Try the public demo:
@@ -7,14 +17,6 @@ https://autocollections-research.streamlit.app/
 The demo uses synthetic inputs only and the frozen exp_039 model.
 It does not retrain the model or access hidden-test data.
 
-
-# AutoCollections Research
-
-**Autonomous next-best-action research for financial operations, evaluated with a frozen,
-deterministic business simulator and hard operational constraints.**
-
-> All monetary values are `simulated_inr_units`. They are benchmark outputs—not observed
-> bank savings, collections recovery, revenue, or causal treatment effects.
 
 ## Headline result
 
